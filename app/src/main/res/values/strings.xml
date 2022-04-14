@@ -1,0 +1,25 @@
+<resources>
+  <string name="app_name">SpaceProbe</string>
+  <string name="colors">Colors</string>
+  <string name="FontTypes">Font Types</string>
+  <string name="shapes">Shapes</string>
+
+  <!-- Colors -->
+  <string name="SpaceGreen">Space Green</string>
+  <string name="SpaceGray">Space Gray</string>
+  <string name="SpaceBlue">Space Blue</string>
+
+  <!-- Shapes -->
+  <string name="SquareEdge">Square Edge</string>
+  <string name="CutEdge">Cut Edge</string>
+  <string name="Rounded">Rounded</string>
+
+  <!-- Fonts -->
+
+  <string name="Roboto">Roboto</string>
+  <string name="OpenSans">OpenSans</string>
+  <string name="Montserrat">Montserrat</string>
+
+
+
+</resources>
