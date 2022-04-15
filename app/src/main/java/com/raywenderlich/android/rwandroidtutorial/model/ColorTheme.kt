@@ -51,8 +51,8 @@ data class ColorTheme(
 val spaceGreenColors = ColorTheme(
     id = SPACE_GREEN_CODE,
     primaryColor = spaceGreen700,
-    secondaryColor = spaceGreen500,
-    itemBackground = spaceGreen200
+    secondaryColor = spaceGreen200,
+    itemBackground = TealGreen200
 )
 
 val spaceGrayColors = ColorTheme(
