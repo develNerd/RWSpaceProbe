@@ -54,8 +54,4 @@ val montserrat = FontFamily(
     Font(R.font.montserrat_bold, weight = FontWeight.Bold)
 )
 
-val amaticFamily = FontFamily(
-    Font(R.font.amatic_sc_regular),
-    Font(R.font.amatic_sc_bold, weight = FontWeight.Bold)
-)
 
