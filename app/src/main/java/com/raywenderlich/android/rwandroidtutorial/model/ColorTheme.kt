@@ -32,27 +32,41 @@
  * THE SOFTWARE.
  */
 
+package com.raywenderlich.android.rwandroidtutorial.model
 
-package com.raywenderlich.android.rwandroidtutorial.ui.theme
-
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.SPACE_BLUE_CODE
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.SPACE_GRAY_CODE
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.SPACE_GREEN_CODE
+import com.raywenderlich.android.rwandroidtutorial.ui.theme.*
 
+data class ColorTheme(
+    val id:Int = SPACE_GREEN_CODE,
+    val primaryColor: Color =spaceGreen700 ,
+    val secondaryColor: Color = spaceGreen500,
+    val itemBackground: Color = spaceGreen200
+)
 
-// Green Colors
-val spaceGreen200 = Color(0xFF6abf69)
-val spaceGreen500 = Color(0xFF006837)
-val spaceGreen700 = Color(0xFF004012)
-val TealGreen200 = Color(0xFFAFDBAF)
+val spaceGreenColors = ColorTheme(
+    id = SPACE_GREEN_CODE,
+    primaryColor = spaceGreen700,
+    secondaryColor = spaceGreen500,
+    itemBackground = spaceGreen200
+)
 
+val spaceGrayColors = ColorTheme(
+    id = SPACE_GRAY_CODE,
+    primaryColor = spaceGray700,
+    secondaryColor = spaceGray500,
+    itemBackground = spaceGray200
+)
 
-//Gray Colors
+val spaceBlueColors = ColorTheme(
+    id = SPACE_BLUE_CODE,
+    primaryColor = spaceBlue700,
+    secondaryColor = spaceBlue500,
+    itemBackground = spaceBlue200
+)
 
-val spaceGray200 = Color(0xFFa4a4a4)
-val spaceGray500 = Color(0xFF757575)
-val spaceGray700 = Color(0xFF494949)
-
-//Blue Colors
-
-val spaceBlue200 = Color(0xFF90caf9)
-val spaceBlue500 = Color(0xFF5d99c6)
-val spaceBlue700 = Color(0xFF3f51b5)
+val LocalColorThemes = compositionLocalOf { ColorTheme() }

@@ -32,27 +32,22 @@
  * THE SOFTWARE.
  */
 
+package com.raywenderlich.android.rwandroidtutorial.model
 
-package com.raywenderlich.android.rwandroidtutorial.ui.theme
+import androidx.compose.foundation.shape.AbsoluteCutCornerShape
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.dp
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_CUT_CODE
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_ROUNDED_CODE
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_SQUARE_CODE
 
-import androidx.compose.ui.graphics.Color
+data class ShapeTheme(val id:Int = SHAPE_SQUARE_CODE,val shape: Shape =  AbsoluteCutCornerShape(0.dp))
 
+val roundedEdge = ShapeTheme(id = SHAPE_ROUNDED_CODE,shape = RoundedCornerShape(10.dp))
+val cutEdge = ShapeTheme(id = SHAPE_CUT_CODE,shape = CutCornerShape(10.dp))
+val squareEdge = ShapeTheme(id = SHAPE_SQUARE_CODE, shape = AbsoluteCutCornerShape(0.dp))
 
-// Green Colors
-val spaceGreen200 = Color(0xFF6abf69)
-val spaceGreen500 = Color(0xFF006837)
-val spaceGreen700 = Color(0xFF004012)
-val TealGreen200 = Color(0xFFAFDBAF)
-
-
-//Gray Colors
-
-val spaceGray200 = Color(0xFFa4a4a4)
-val spaceGray500 = Color(0xFF757575)
-val spaceGray700 = Color(0xFF494949)
-
-//Blue Colors
-
-val spaceBlue200 = Color(0xFF90caf9)
-val spaceBlue500 = Color(0xFF5d99c6)
-val spaceBlue700 = Color(0xFF3f51b5)
+val LocalShapeThemes = compositionLocalOf { ShapeTheme() }

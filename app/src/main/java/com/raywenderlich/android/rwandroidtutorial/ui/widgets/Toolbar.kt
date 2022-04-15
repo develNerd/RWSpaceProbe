@@ -38,19 +38,26 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.raywenderlich.android.rwandroidtutorial.R
+import com.raywenderlich.android.rwandroidtutorial.model.LocalColorThemes
+import com.raywenderlich.android.rwandroidtutorial.model.LocalFontThemes
 
 @Composable
 fun MainTopBar(
-  actions: @Composable RowScope.() -> Unit = {}
+    backgroundColor: Color = LocalColorThemes.current.primaryColor,
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
-  TopAppBar(
-    elevation = 4.dp,
-    title = {
-      Text(text = stringResource(id = R.string.app_name))
-    },
-    actions = actions
-  )
+    TopAppBar(
+        elevation = 4.dp,
+        title = {
+            Text(
+                text = stringResource(id = R.string.app_name),
+                fontFamily = LocalFontThemes.current.fontFamily
+            )
+        },
+        actions = actions, backgroundColor = backgroundColor, contentColor = Color.White
+    )
 }

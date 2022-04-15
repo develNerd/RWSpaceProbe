@@ -1,50 +1,59 @@
+/*
+ * Copyright (c) 2022 Razeware LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
+ * distribute, sublicense, create a derivative work, and/or sell copies of the
+ * Software in any work that is designed, intended, or marketed for pedagogical or
+ * instructional purposes related to programming, coding, application development,
+ * or information technology.  Permission for such use, copying, modification,
+ * merger, publication, distribution, sublicensing, creation of derivative works,
+ * or sale is expressly withheld.
+ *
+ * This project and source code may use libraries or frameworks that are
+ * released under various Open-Source licenses. Use of those libraries and
+ * frameworks are governed by their own individual licenses.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package com.raywenderlich.android.rwandroidtutorial.ui.screens
 
-import android.app.Activity
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.RadioButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.R
-import com.raywenderlich.android.rwandroidtutorial.model.ThemeItem
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.dp10
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
+import com.raywenderlich.android.rwandroidtutorial.model.*
+import com.raywenderlich.android.rwandroidtutorial.ui.theme.mediumPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.paddingRadioButtonHorizontal
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 
 
 @Composable
-fun ThemeSelectorSection() {
-
-    val context = LocalContext.current as Activity
-    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
-
-    Column(
-        verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier
-            .fillMaxWidth()
-            .shadow(elevation = elevation)
-    ) {
-        ColorSelectorSection(sharedPref = sharedPref)
-        ShapeSelectorSection(sharedPref = sharedPref)
-        FontSelectorSection(sharedPref = sharedPref)
-
-    }
-
-
-}
-
-@Composable
-fun ColorSelectorSection(sharedPref: SharedPreferences) {
+fun ColorSelectorSection(sharedPref: SharedPreferences, currentColorTheme: ColorTheme, setCurrentColorTheme : (Int) -> Unit) {
 
     val themeColors = listOf(
         ThemeItem(stringResource(id = R.string.SpaceGreen), R.string.SpaceGreen),
@@ -52,39 +61,35 @@ fun ColorSelectorSection(sharedPref: SharedPreferences) {
         ThemeItem(stringResource(id = R.string.SpaceBlue), R.string.SpaceBlue)
     )
 
-    val colorKey = stringResource(id = R.string.colors)
 
-    val themeId = sharedPref.getInt(colorKey, R.string.SpaceGreen)
-
-
-    var currentColor by remember {
-        mutableStateOf(themeId)
-    }
 
     Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(
-        dp10
+        mediumPadding
     )) {
-        Text(text = stringResource(id = R.string.colors), fontWeight = FontWeight.Bold)
+        Text(text = stringResource(id = R.string.colors), fontWeight = FontWeight.Bold, fontFamily = LocalFontThemes.current.fontFamily)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
                 .selectableGroup()
         ) {
             themeColors.forEach { themeColor ->
                 Row(modifier = Modifier.clickable {
                     with(sharedPref.edit()) {
-                        currentColor = themeColor.id
-                        putInt(colorKey, currentColor)
+                        setCurrentColorTheme(themeColor.id)
+                        putInt(COLOR_KEY, themeColor.id)
                         apply()
                     }
                 }) {
+
                     RadioButton(
-                        selected = themeColor.id == currentColor,
-                        null
+                        selected = themeColor.id == currentColorTheme.id,
+                        null, colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
                     )
                     Text(
                         text = themeColor.name,
                         style = MaterialTheme.typography.body1,
+                        fontFamily = LocalFontThemes.current.fontFamily,
                         modifier = Modifier.padding(start = paddingRadioButtonHorizontal, end = paddingRadioButtonHorizontal)
                     )
                 }
@@ -95,45 +100,40 @@ fun ColorSelectorSection(sharedPref: SharedPreferences) {
 }
 
 @Composable
-fun ShapeSelectorSection(sharedPref: SharedPreferences) {
+fun ShapeSelectorSection(sharedPref: SharedPreferences,currentShapeTheme: ShapeTheme, setCurrentShapeTheme : (Int) -> Unit) {
 
     val shapeThemes = listOf(
         ThemeItem(stringResource(id = R.string.SquareEdge), R.string.SquareEdge),
         ThemeItem(stringResource(id = R.string.CutEdge), R.string.CutEdge),
-        ThemeItem(stringResource(id = R.string.Rounded), R.string.Rounded)
+        ThemeItem(stringResource(id = R.string.RoundedEdge), R.string.RoundedEdge)
     )
 
-    val shapeKey = stringResource(id = R.string.shapes)
-
-    val themeId = sharedPref.getInt(shapeKey, R.string.SquareEdge)
 
 
-    var currentShape by remember {
-        mutableStateOf(themeId)
-    }
-
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding),modifier = Modifier.padding(dp10)) {
-        Text(text = stringResource(id = R.string.shapes), fontWeight = FontWeight.Bold)
+    Column(verticalArrangement = Arrangement.spacedBy(smallPadding),modifier = Modifier.padding(mediumPadding)) {
+        Text(text = stringResource(id = R.string.shapes), fontWeight = FontWeight.Bold, fontFamily = LocalFontThemes.current.fontFamily)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
                 .selectableGroup()
         ) {
             shapeThemes.forEach { themeShape ->
                 Row(modifier = Modifier.clickable {
                     with(sharedPref.edit()) {
-                        currentShape = themeShape.id
-                        putInt(shapeKey, currentShape)
+                        setCurrentShapeTheme(themeShape.id)
+                        putInt(SHAPE_KEY, themeShape.id)
                         apply()
                     }
                 }) {
                     RadioButton(
-                        selected = themeShape.id == currentShape,
-                        null
+                        selected = themeShape.id == currentShapeTheme.id,
+                        null, colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
                     )
                     Text(
                         text = themeShape.name,
                         style = MaterialTheme.typography.body1.merge(),
+                        fontFamily = LocalFontThemes.current.fontFamily,
                         modifier = Modifier.padding(start = paddingRadioButtonHorizontal, end = paddingRadioButtonHorizontal)
                     )
                 }
@@ -145,45 +145,40 @@ fun ShapeSelectorSection(sharedPref: SharedPreferences) {
 
 
 @Composable
-fun FontSelectorSection(sharedPref: SharedPreferences) {
+fun FontSelectorSection(sharedPref: SharedPreferences,currentFontTheme: FontsTheme, setCurrentFontTheme : (Int) -> Unit) {
 
-    val shapeThemes = listOf(
-        ThemeItem(stringResource(id = R.string.OpenSans), R.string.OpenSans),
-        ThemeItem(stringResource(id = R.string.Roboto), R.string.Roboto),
-        ThemeItem(stringResource(id = R.string.Montserrat), R.string.Montserrat)
+    val fontThemes = listOf(
+        ThemeItem(stringResource(id = R.string.OpenSans), FONT_OPEN_SANS_CODE),
+        ThemeItem(stringResource(id = R.string.Roboto), FONT_ROBOTO_CODE),
+        ThemeItem(stringResource(id = R.string.Montserrat), FONT_MONTSERRAT_CODE),
+        ThemeItem(stringResource(id = R.string.Amatic), FONT_AMATIC_CODE)
     )
 
-    val fontKey = stringResource(id = R.string.FontTypes)
 
-    val themeId = sharedPref.getInt(fontKey, R.string.OpenSans)
-
-
-    var currentFont by remember {
-        mutableStateOf(themeId)
-    }
-
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding),modifier = Modifier.padding(dp10)) {
-        Text(text = stringResource(id = R.string.FontTypes), fontWeight = FontWeight.Bold)
+    Column(verticalArrangement = Arrangement.spacedBy(smallPadding),modifier = Modifier.padding(mediumPadding)) {
+        Text(text = stringResource(id = R.string.FontTypes), fontWeight = FontWeight.Bold, fontFamily = LocalFontThemes.current.fontFamily)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
                 .selectableGroup()
         ) {
-            shapeThemes.forEach { themeFont ->
+            fontThemes.forEach { themeFont ->
                 Row(modifier = Modifier.clickable {
                     with(sharedPref.edit()) {
-                        currentFont = themeFont.id
-                        putInt(fontKey, currentFont)
+                        setCurrentFontTheme(themeFont.id)
+                        putInt(FONT_KEY, currentFontTheme.id)
                         apply()
                     }
                 }) {
                     RadioButton(
-                        selected = themeFont.id == currentFont,
-                        null
+                        selected = themeFont.id == currentFontTheme.id,
+                        null, colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
                     )
                     Text(
                         text = themeFont.name,
                         style = MaterialTheme.typography.body1.merge(),
+                        fontFamily = LocalFontThemes.current.fontFamily,
                         modifier = Modifier.padding(start = paddingRadioButtonHorizontal, end = paddingRadioButtonHorizontal)
                     )
                 }

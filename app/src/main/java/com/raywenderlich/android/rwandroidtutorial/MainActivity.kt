@@ -51,6 +51,10 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.SpaceProbeTheme
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    setTheme(R.style.AppTheme)
+
+
     setContent {
       SpaceProbeTheme {
         // A surface container using the 'background' color from the theme
