@@ -22,6 +22,5 @@ fun getCurrentFont(fontId:Int):FontsTheme = when(fontId){
     FONT_MONTSERRAT_CODE -> montserrat
     FONT_ROBOTO_CODE -> roboto
     FONT_OPEN_SANS_CODE -> openSans
-    FONT_AMATIC_CODE -> amatic_sc
     else -> openSans
 }

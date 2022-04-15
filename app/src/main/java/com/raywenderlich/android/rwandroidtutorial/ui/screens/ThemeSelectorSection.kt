@@ -56,9 +56,9 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 fun ColorSelectorSection(sharedPref: SharedPreferences, currentColorTheme: ColorTheme, setCurrentColorTheme : (Int) -> Unit) {
 
     val themeColors = listOf(
-        ThemeItem(stringResource(id = R.string.SpaceGreen), R.string.SpaceGreen),
-        ThemeItem(stringResource(id = R.string.SpaceGray), R.string.SpaceGray),
-        ThemeItem(stringResource(id = R.string.SpaceBlue), R.string.SpaceBlue)
+        ThemeItem(stringResource(id = R.string.SpaceGreen), SPACE_GREEN_CODE),
+        ThemeItem(stringResource(id = R.string.SpaceGray), SPACE_GRAY_CODE),
+        ThemeItem(stringResource(id = R.string.SpaceBlue), SPACE_BLUE_CODE)
     )
 
 
@@ -103,9 +103,9 @@ fun ColorSelectorSection(sharedPref: SharedPreferences, currentColorTheme: Color
 fun ShapeSelectorSection(sharedPref: SharedPreferences,currentShapeTheme: ShapeTheme, setCurrentShapeTheme : (Int) -> Unit) {
 
     val shapeThemes = listOf(
-        ThemeItem(stringResource(id = R.string.SquareEdge), R.string.SquareEdge),
-        ThemeItem(stringResource(id = R.string.CutEdge), R.string.CutEdge),
-        ThemeItem(stringResource(id = R.string.RoundedEdge), R.string.RoundedEdge)
+        ThemeItem(stringResource(id = R.string.SquareEdge), SHAPE_SQUARE_CODE),
+        ThemeItem(stringResource(id = R.string.CutEdge), SHAPE_CUT_CODE),
+        ThemeItem(stringResource(id = R.string.RoundedEdge), SHAPE_ROUNDED_CODE)
     )
 
 
@@ -151,7 +151,6 @@ fun FontSelectorSection(sharedPref: SharedPreferences,currentFontTheme: FontsThe
         ThemeItem(stringResource(id = R.string.OpenSans), FONT_OPEN_SANS_CODE),
         ThemeItem(stringResource(id = R.string.Roboto), FONT_ROBOTO_CODE),
         ThemeItem(stringResource(id = R.string.Montserrat), FONT_MONTSERRAT_CODE),
-        ThemeItem(stringResource(id = R.string.Amatic), FONT_AMATIC_CODE)
     )
 
 

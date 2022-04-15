@@ -60,9 +60,6 @@ val montserrat = FontsTheme(
 )
 
 
-val amatic_sc = FontsTheme(
-    id = FONT_AMATIC_CODE,
-    fontFamily = amaticFamily
-)
+
 
 val LocalFontThemes = compositionLocalOf { FontsTheme() }
