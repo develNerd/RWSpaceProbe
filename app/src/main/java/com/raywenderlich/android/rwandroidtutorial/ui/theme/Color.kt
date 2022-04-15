@@ -40,8 +40,8 @@ import androidx.compose.ui.graphics.Color
 
 // Green Colors
 val spaceGreen200 = Color(0xFF6abf69)
-val spaceGreen500 = Color(0xFF006837)
-val spaceGreen700 = Color(0xFF004012)
+val spaceGreen500 = Color(0xFF064D2B)
+val spaceGreen700 = Color(0xFF006837)
 val TealGreen200 = Color(0xFFAFDBAF)
 
 
