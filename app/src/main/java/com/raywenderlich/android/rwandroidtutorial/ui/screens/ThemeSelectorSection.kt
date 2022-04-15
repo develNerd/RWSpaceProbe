@@ -100,7 +100,7 @@ fun ShapeSelectorSection(sharedPref: SharedPreferences) {
     val shapeThemes = listOf(
         ThemeItem(stringResource(id = R.string.SquareEdge), R.string.SquareEdge),
         ThemeItem(stringResource(id = R.string.CutEdge), R.string.CutEdge),
-        ThemeItem(stringResource(id = R.string.Rounded), R.string.Rounded)
+        ThemeItem(stringResource(id = R.string.RoundedEdge), R.string.RoundedEdge)
     )
 
     val shapeKey = stringResource(id = R.string.shapes)

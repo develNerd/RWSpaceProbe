@@ -44,13 +44,13 @@ import com.raywenderlich.android.rwandroidtutorial.R
 
 @Composable
 fun MainTopBar(
-  actions: @Composable RowScope.() -> Unit = {}
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
-  TopAppBar(
-    elevation = 4.dp,
-    title = {
-      Text(text = stringResource(id = R.string.app_name))
-    },
-    actions = actions
-  )
+    TopAppBar(
+        elevation = 4.dp,
+        title = {
+            Text(text = stringResource(id = R.string.app_name))
+        },
+        actions = actions
+    )
 }

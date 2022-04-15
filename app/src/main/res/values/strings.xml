@@ -12,13 +12,14 @@
   <!-- Shapes -->
   <string name="SquareEdge">Square Edge</string>
   <string name="CutEdge">Cut Edge</string>
-  <string name="Rounded">Rounded</string>
+  <string name="RoundedEdge">Rounded Edge</string>
 
   <!-- Fonts -->
 
   <string name="Roboto">Roboto</string>
   <string name="OpenSans">OpenSans</string>
   <string name="Montserrat">Montserrat</string>
+  <string name="Amatic">Amatic SC</string>
 
 
 
