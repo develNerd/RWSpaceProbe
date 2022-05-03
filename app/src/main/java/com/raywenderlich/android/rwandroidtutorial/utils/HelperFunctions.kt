@@ -11,16 +11,16 @@ fun getCurrentColor(colorId:Int): ColorTheme = when(colorId){
 }
 
 fun getCurrentShape(shapeId:Int):ShapeTheme =  when(shapeId){
-    SHAPE_SQUARE_CODE -> squareEdge
-    SHAPE_ROUNDED_CODE -> roundedEdge
-    SHAPE_CUT_CODE -> cutEdge
-    else -> squareEdge
+    SHAPE_SQUARE_CODE -> shapeSquareEdge
+    SHAPE_ROUNDED_CODE -> shapeRoundedEdge
+    SHAPE_CUT_CODE -> shapeCutEdge
+    else -> shapeSquareEdge
 }
 
 
 fun getCurrentFont(fontId:Int):FontsTheme = when(fontId){
-    FONT_MONTSERRAT_CODE -> montserrat
-    FONT_ROBOTO_CODE -> roboto
-    FONT_OPEN_SANS_CODE -> openSans
-    else -> openSans
+    FONT_MONTSERRAT_CODE -> fontMontserrat
+    FONT_ROBOTO_CODE -> fontRoboto
+    FONT_OPEN_SANS_CODE -> fontOpenSans
+    else -> fontOpenSans
 }

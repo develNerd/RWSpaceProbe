@@ -36,7 +36,6 @@ package com.raywenderlich.android.rwandroidtutorial.ui.screens
 
 import android.app.Activity
 import android.content.Context
-import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -89,122 +88,126 @@ const val FONT_KEY = "Fonts"
 @Composable
 fun MainScreen() {
 
+  var isThemeSectionExpanded by remember {
+    mutableStateOf(true)
+  }
 
-    var isThemeSectionExpanded by remember {
-        mutableStateOf(true)
-    }
+  val context = LocalContext.current as Activity
+  val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
 
-    val context = LocalContext.current as Activity
-    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
+  val colorTheme = sharedPref.getInt(COLOR_KEY, SPACE_GREEN_CODE)
+  val shapeTheme = sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE)
+  val fontTheme = sharedPref.getInt(FONT_KEY, FONT_OPEN_SANS_CODE)
 
-    val colorTheme = sharedPref.getInt(COLOR_KEY, SPACE_GREEN_CODE)
-    val shapeTheme = sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE)
-    val fontTheme = sharedPref.getInt(FONT_KEY, FONT_OPEN_SANS_CODE)
+  var currentColorThemeCode by remember {
+    mutableStateOf(colorTheme)
+  }
 
-    var currentColorThemeCode by remember {
-        mutableStateOf(colorTheme)
-    }
+  var currentShapeThemeCode by remember {
+    mutableStateOf(shapeTheme)
+  }
 
+  var currentFontThemeCode by remember {
+    mutableStateOf(fontTheme)
+  }
 
-    var currentShapeThemeCode by remember {
-        mutableStateOf(shapeTheme)
-    }
+  val shapeThemes = getCurrentShape(currentShapeThemeCode)
 
-    var currentFontThemeCode by remember {
-        mutableStateOf(fontTheme)
-    }
+  val colorThemes = getCurrentColor(currentColorThemeCode)
 
-    val shapeThemes = getCurrentShape(currentShapeThemeCode)
+  val fontThemes = getCurrentFont(currentFontThemeCode)
 
+  CompositionLocalProvider(
+    LocalColorThemes provides colorThemes,
+    LocalShapeThemes provides shapeThemes,
+    LocalFontThemes provides fontThemes
+  ) {
 
-    val colorThemes = getCurrentColor(currentColorThemeCode)
-
-    val fontThemes = getCurrentFont(currentFontThemeCode)
-
-    CompositionLocalProvider(
-        LocalColorThemes provides colorThemes,
-        LocalShapeThemes provides shapeThemes,
-        LocalFontThemes provides fontThemes
-    ) {
-
-        Scaffold(topBar = {
-            MainTopBar(backgroundColor = LocalColorThemes.current.primaryColor, actions = {
-                IconButton(onClick = { isThemeSectionExpanded = !isThemeSectionExpanded }) {
-                    Icon(
-                        if (!isThemeSectionExpanded) Icons.Filled.ArrowDropDown else Icons.Filled.ArrowDropUp,
-                        contentDescription = "Localized description"
-                    )
-                }
-            })
-        })
-        {
-
-
-            Column(
-                verticalArrangement = Arrangement.spacedBy(
-                    smallPadding
-                )
-            ) {
-
-                if (isThemeSectionExpanded) {
-                    Column(
-                        verticalArrangement = Arrangement.spacedBy(smallPadding),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .shadow(elevation = elevation)
-                    ) {
-                        ColorSelectorSection(
-                            sharedPref = sharedPref,
-                            currentColorTheme = LocalColorThemes.current
-                        ) {
-                            currentColorThemeCode = it
-                        }
-                        ShapeSelectorSection(sharedPref = sharedPref, LocalShapeThemes.current){
-                            currentShapeThemeCode = it
-                        }
-                        FontSelectorSection(sharedPref = sharedPref, LocalFontThemes.current){
-                            currentFontThemeCode = it
-                        }
-                    }
-                }
-
-                Column(
-                    modifier = Modifier
-                        .padding(mediumPadding)
-                        .verticalScroll(rememberScrollState()),
-                    verticalArrangement = Arrangement.spacedBy(
-                        smallPadding
-                    )
-                ) {
-                    spaceProbeMissions.forEach { probeMission ->
-                        ProbeMissionItem(
-                            probeName = probeMission.probeName,
-                            missionDescription = probeMission.missionDescription
-                        )
-                    }
-                }
-
-
-            }
-
-
+    Scaffold(topBar = {
+      MainTopBar(backgroundColor = LocalColorThemes.current.primaryColor, actions = {
+        IconButton(onClick = { isThemeSectionExpanded = !isThemeSectionExpanded }) {
+          Icon(
+            if (!isThemeSectionExpanded) Icons.Filled.ArrowDropDown else Icons.Filled.ArrowDropUp,
+            contentDescription = "Localized description"
+          )
         }
+      })
+    })
+    {
+
+      Column(
+        verticalArrangement = Arrangement.spacedBy(
+          smallPadding
+        )
+      ) {
+        if (isThemeSectionExpanded) {
+          Column(
+            verticalArrangement = Arrangement.spacedBy(smallPadding),
+            modifier = Modifier
+                .fillMaxWidth()
+                .shadow(elevation = elevation)
+          ) {
+            ColorSelectorSection(
+              sharedPref = sharedPref,
+              currentColorTheme = LocalColorThemes.current
+            ) {
+              currentColorThemeCode = it
+            }
+            ShapeSelectorSection(sharedPref = sharedPref, LocalShapeThemes.current) {
+              currentShapeThemeCode = it
+            }
+            FontSelectorSection(sharedPref = sharedPref, LocalFontThemes.current) {
+              currentFontThemeCode = it
+            }
+          }
+        }
+
+        Column(
+          modifier = Modifier
+              .padding(mediumPadding)
+              .verticalScroll(rememberScrollState()),
+          verticalArrangement = Arrangement.spacedBy(
+            smallPadding
+          )
+        ) {
+          spaceProbeMissions.forEach { probeMission ->
+            ProbeMissionItem(
+              probeName = probeMission.probeName,
+              missionDescription = probeMission.missionDescription
+            )
+          }
+        }
+
+
+      }
+
+
     }
+  }
 
 }
 
 @Composable
 fun ProbeMissionItem(probeName: String, missionDescription: String) {
-    Box(modifier = Modifier.background(color = LocalColorThemes.current.itemBackground,shape = LocalShapeThemes.current.shape)) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(mediumPadding), modifier = Modifier.padding(
-                largePadding
-            )
-        ) {
-            Text(text = probeName, fontWeight = FontWeight.Bold, fontFamily = LocalFontThemes.current.fontFamily)
-            Text(text = missionDescription, fontFamily = LocalFontThemes.current.fontFamily)
-        }
+  Box(
+    modifier = Modifier.background(
+      color = LocalColorThemes.current.itemBackground,
+      shape = LocalShapeThemes.current.shape
+    )
+  ) {
+    Column(
+      verticalArrangement = Arrangement.spacedBy(mediumPadding), modifier = Modifier.padding(
+        largePadding
+      )
+    ) {
+      Text(
+        text = probeName,
+        fontWeight = FontWeight.Bold,
+        fontFamily = LocalFontThemes.current.fontFamily
+      )
+      Text(text = missionDescription, fontFamily = LocalFontThemes.current.fontFamily)
     }
+  }
 
 }
 

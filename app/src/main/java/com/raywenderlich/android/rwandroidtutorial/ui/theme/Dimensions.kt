@@ -35,7 +35,6 @@
 package com.raywenderlich.android.rwandroidtutorial.ui.theme
 
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 
 /**

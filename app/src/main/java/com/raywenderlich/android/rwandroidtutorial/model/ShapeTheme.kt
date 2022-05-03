@@ -46,8 +46,8 @@ import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_SQUARE_CODE
 
 data class ShapeTheme(val id:Int = SHAPE_SQUARE_CODE,val shape: Shape =  AbsoluteCutCornerShape(0.dp))
 
-val roundedEdge = ShapeTheme(id = SHAPE_ROUNDED_CODE,shape = RoundedCornerShape(10.dp))
-val cutEdge = ShapeTheme(id = SHAPE_CUT_CODE,shape = CutCornerShape(10.dp))
-val squareEdge = ShapeTheme(id = SHAPE_SQUARE_CODE, shape = AbsoluteCutCornerShape(0.dp))
+val shapeRoundedEdge = ShapeTheme(id = SHAPE_ROUNDED_CODE,shape = RoundedCornerShape(10.dp))
+val shapeCutEdge = ShapeTheme(id = SHAPE_CUT_CODE,shape = CutCornerShape(10.dp))
+val shapeSquareEdge = ShapeTheme(id = SHAPE_SQUARE_CODE, shape = AbsoluteCutCornerShape(0.dp))
 
 val LocalShapeThemes = compositionLocalOf { ShapeTheme() }

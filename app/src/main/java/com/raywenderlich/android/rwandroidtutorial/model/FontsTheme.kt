@@ -44,17 +44,17 @@ data class FontsTheme(
     val fontFamily: FontFamily = openSansFamily
 )
 
-val openSans = FontsTheme(
+val fontOpenSans = FontsTheme(
     id = FONT_OPEN_SANS_CODE,
     fontFamily = openSansFamily
 )
 
-val roboto = FontsTheme(
+val fontRoboto = FontsTheme(
     id = FONT_ROBOTO_CODE,
     fontFamily = robotoFamily
 )
 
-val montserrat = FontsTheme(
+val fontMontserrat = FontsTheme(
     id = FONT_MONTSERRAT_CODE,
     fontFamily = montserratFamily
 )
