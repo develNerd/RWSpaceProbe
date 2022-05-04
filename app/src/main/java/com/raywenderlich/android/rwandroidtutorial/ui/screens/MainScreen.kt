@@ -66,7 +66,6 @@ import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentColor
 import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentFont
 import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentShape
 
-
 const val SPACE_GREEN_CODE = R.string.SpaceGreen
 const val SPACE_GRAY_CODE = R.string.SpaceGray
 const val SPACE_BLUE_CODE = R.string.SpaceBlue
@@ -77,140 +76,128 @@ const val SHAPE_ROUNDED_CODE = R.string.RoundedEdge
 const val SHAPE_CUT_CODE = R.string.CutEdge
 const val SHAPE_KEY = "Shapes"
 
-
 const val FONT_OPEN_SANS_CODE = R.string.OpenSans
 const val FONT_ROBOTO_CODE = R.string.Roboto
 const val FONT_MONTSERRAT_CODE = R.string.Montserrat
 const val FONT_AMATIC_CODE = R.string.Amatic
 const val FONT_KEY = "Fonts"
 
-
 @Composable
 fun MainScreen() {
 
-  var isThemeSectionExpanded by remember {
-    mutableStateOf(true)
-  }
-
-  val context = LocalContext.current as Activity
-  val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
-
-  val colorTheme = sharedPref.getInt(COLOR_KEY, SPACE_GREEN_CODE)
-  val shapeTheme = sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE)
-  val fontTheme = sharedPref.getInt(FONT_KEY, FONT_OPEN_SANS_CODE)
-
-  var currentColorThemeCode by remember {
-    mutableStateOf(colorTheme)
-  }
-
-  var currentShapeThemeCode by remember {
-    mutableStateOf(shapeTheme)
-  }
-
-  var currentFontThemeCode by remember {
-    mutableStateOf(fontTheme)
-  }
-
-  val shapeThemes = getCurrentShape(currentShapeThemeCode)
-
-  val colorThemes = getCurrentColor(currentColorThemeCode)
-
-  val fontThemes = getCurrentFont(currentFontThemeCode)
-
-  CompositionLocalProvider(
-    LocalColorThemes provides colorThemes,
-    LocalShapeThemes provides shapeThemes,
-    LocalFontThemes provides fontThemes
-  ) {
-
-    Scaffold(topBar = {
-      MainTopBar(backgroundColor = LocalColorThemes.current.primaryColor, actions = {
-        IconButton(onClick = { isThemeSectionExpanded = !isThemeSectionExpanded }) {
-          Icon(
-            if (!isThemeSectionExpanded) Icons.Filled.ArrowDropDown else Icons.Filled.ArrowDropUp,
-            contentDescription = "Localized description"
-          )
-        }
-      })
-    })
-    {
-
-      Column(
-        verticalArrangement = Arrangement.spacedBy(
-          smallPadding
-        )
-      ) {
-        if (isThemeSectionExpanded) {
-          Column(
-            verticalArrangement = Arrangement.spacedBy(smallPadding),
-            modifier = Modifier
-                .fillMaxWidth()
-                .shadow(elevation = elevation)
-          ) {
-            ColorSelectorSection(
-              sharedPref = sharedPref,
-              currentColorTheme = LocalColorThemes.current
-            ) {
-              currentColorThemeCode = it
-            }
-            ShapeSelectorSection(sharedPref = sharedPref, LocalShapeThemes.current) {
-              currentShapeThemeCode = it
-            }
-            FontSelectorSection(sharedPref = sharedPref, LocalFontThemes.current) {
-              currentFontThemeCode = it
-            }
-          }
-        }
-
-        Column(
-          modifier = Modifier
-              .padding(mediumPadding)
-              .verticalScroll(rememberScrollState()),
-          verticalArrangement = Arrangement.spacedBy(
-            smallPadding
-          )
-        ) {
-          spaceProbeMissions.forEach { probeMission ->
-            ProbeMissionItem(
-              probeName = probeMission.probeName,
-              missionDescription = probeMission.missionDescription
-            )
-          }
-        }
-
-
-      }
-
-
+    var isThemeSectionExpanded by remember {
+        mutableStateOf(true)
     }
-  }
 
+    val context = LocalContext.current as Activity
+    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
+
+    val colorTheme = sharedPref.getInt(COLOR_KEY, SPACE_GREEN_CODE)
+    val shapeTheme = sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE)
+    val fontTheme = sharedPref.getInt(FONT_KEY, FONT_OPEN_SANS_CODE)
+
+    var currentColorThemeCode by remember {
+        mutableStateOf(colorTheme)
+    }
+
+    var currentShapeThemeCode by remember {
+        mutableStateOf(shapeTheme)
+    }
+
+    var currentFontThemeCode by remember {
+        mutableStateOf(fontTheme)
+    }
+
+    val shapeThemes = getCurrentShape(currentShapeThemeCode)
+
+    val colorThemes = getCurrentColor(currentColorThemeCode)
+
+    val fontThemes = getCurrentFont(currentFontThemeCode)
+
+    CompositionLocalProvider(
+        LocalColorThemes provides colorThemes,
+        LocalShapeThemes provides shapeThemes,
+        LocalFontThemes provides fontThemes
+    ) {
+
+        Scaffold(topBar = {
+            MainTopBar(backgroundColor = LocalColorThemes.current.primaryColor, actions = {
+                IconButton(onClick = { isThemeSectionExpanded = !isThemeSectionExpanded }) {
+                    Icon(
+                        if (!isThemeSectionExpanded) Icons.Filled.ArrowDropDown else Icons.Filled.ArrowDropUp,
+                        contentDescription = "Localized description"
+                    )
+                }
+            })
+        }) {
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(
+                    smallPadding
+                )
+            ) {
+                if (isThemeSectionExpanded) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(smallPadding),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(elevation = elevation)
+                    ) {
+                        ColorSelectorSection(
+                            sharedPref = sharedPref,
+                            currentColorTheme = LocalColorThemes.current
+                        ) {
+                            currentColorThemeCode = it
+                        }
+                        ShapeSelectorSection(sharedPref = sharedPref, LocalShapeThemes.current) {
+                            currentShapeThemeCode = it
+                        }
+                        FontSelectorSection(sharedPref = sharedPref, LocalFontThemes.current) {
+                            currentFontThemeCode = it
+                        }
+                    }
+                }
+
+                Column(
+                    modifier = Modifier
+                        .padding(mediumPadding)
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(
+                        smallPadding
+                    )
+                ) {
+                    spaceProbeMissions.forEach { probeMission ->
+                        ProbeMissionItem(
+                            probeName = probeMission.probeName,
+                            missionDescription = probeMission.missionDescription
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
 fun ProbeMissionItem(probeName: String, missionDescription: String) {
-  Box(
-    modifier = Modifier.background(
-      color = LocalColorThemes.current.itemBackground,
-      shape = LocalShapeThemes.current.shape
-    )
-  ) {
-    Column(
-      verticalArrangement = Arrangement.spacedBy(mediumPadding), modifier = Modifier.padding(
-        largePadding
-      )
+    Box(
+        modifier = Modifier.background(
+            color = LocalColorThemes.current.itemBackground,
+            shape = LocalShapeThemes.current.shape
+        )
     ) {
-      Text(
-        text = probeName,
-        fontWeight = FontWeight.Bold,
-        fontFamily = LocalFontThemes.current.fontFamily
-      )
-      Text(text = missionDescription, fontFamily = LocalFontThemes.current.fontFamily)
+        Column(
+            verticalArrangement = Arrangement.spacedBy(mediumPadding),
+            modifier = Modifier.padding(
+                largePadding
+            )
+        ) {
+            Text(
+                text = probeName,
+                fontWeight = FontWeight.Bold,
+                fontFamily = LocalFontThemes.current.fontFamily
+            )
+            Text(text = missionDescription, fontFamily = LocalFontThemes.current.fontFamily)
+        }
     }
-  }
-
 }
-
-
-
-

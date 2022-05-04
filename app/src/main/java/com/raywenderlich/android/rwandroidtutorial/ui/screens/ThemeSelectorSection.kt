@@ -52,179 +52,176 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.mediumPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.paddingRadioButtonHorizontal
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 
-
 @Composable
 fun ColorSelectorSection(
-  sharedPref: SharedPreferences,
-  currentColorTheme: ColorTheme,
-  setCurrentColorTheme: (Int) -> Unit
+    sharedPref: SharedPreferences,
+    currentColorTheme: ColorTheme,
+    setCurrentColorTheme: (Int) -> Unit
 ) {
 
-  val themeColors = listOf(
-    ThemeItem(stringResource(id = R.string.SpaceGreen), SPACE_GREEN_CODE),
-    ThemeItem(stringResource(id = R.string.SpaceGray), SPACE_GRAY_CODE),
-    ThemeItem(stringResource(id = R.string.SpaceBlue), SPACE_BLUE_CODE)
-  )
-
-
-
-  Column(
-    verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(
-      mediumPadding
+    val themeColors = listOf(
+        ThemeItem(stringResource(id = R.string.SpaceGreen), SPACE_GREEN_CODE),
+        ThemeItem(stringResource(id = R.string.SpaceGray), SPACE_GRAY_CODE),
+        ThemeItem(stringResource(id = R.string.SpaceBlue), SPACE_BLUE_CODE)
     )
-  ) {
-    Text(
-      text = stringResource(id = R.string.colors),
-      fontWeight = FontWeight.Bold,
-      fontFamily = LocalFontThemes.current.fontFamily
-    )
-    Row(
-      modifier = Modifier
-          .fillMaxWidth()
-          .selectableGroup()
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(smallPadding),
+        modifier = Modifier.padding(
+            mediumPadding
+        )
     ) {
-      themeColors.forEach { themeColor ->
-        Row(modifier = Modifier.clickable {
-          with(sharedPref.edit()) {
-            setCurrentColorTheme(themeColor.id)
-            putInt(COLOR_KEY, themeColor.id)
-            apply()
-          }
-        }) {
+        Text(
+            text = stringResource(id = R.string.colors),
+            fontWeight = FontWeight.Bold,
+            fontFamily = LocalFontThemes.current.fontFamily
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectableGroup()
+        ) {
+            themeColors.forEach { themeColor ->
+                Row(
+                    modifier = Modifier.clickable {
+                        with(sharedPref.edit()) {
+                            setCurrentColorTheme(themeColor.id)
+                            putInt(COLOR_KEY, themeColor.id)
+                            apply()
+                        }
+                    }
+                ) {
 
-          RadioButton(
-            selected = themeColor.id == currentColorTheme.id,
-            null,
-            colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
-          )
-          Text(
-            text = themeColor.name,
-            style = MaterialTheme.typography.body1,
-            fontFamily = LocalFontThemes.current.fontFamily,
-            modifier = Modifier.padding(
-              start = paddingRadioButtonHorizontal,
-              end = paddingRadioButtonHorizontal
-            )
-          )
+                    RadioButton(
+                        selected = themeColor.id == currentColorTheme.id,
+                        null,
+                        colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
+                    )
+                    Text(
+                        text = themeColor.name,
+                        style = MaterialTheme.typography.body1,
+                        fontFamily = LocalFontThemes.current.fontFamily,
+                        modifier = Modifier.padding(
+                            start = paddingRadioButtonHorizontal,
+                            end = paddingRadioButtonHorizontal
+                        )
+                    )
+                }
+            }
         }
-      }
     }
-
-  }
 }
 
 @Composable
 fun ShapeSelectorSection(
-  sharedPref: SharedPreferences,
-  currentShapeTheme: ShapeTheme,
-  setCurrentShapeTheme: (Int) -> Unit
+    sharedPref: SharedPreferences,
+    currentShapeTheme: ShapeTheme,
+    setCurrentShapeTheme: (Int) -> Unit
 ) {
 
-  val shapeThemes = listOf(
-    ThemeItem(stringResource(id = R.string.SquareEdge), SHAPE_SQUARE_CODE),
-    ThemeItem(stringResource(id = R.string.CutEdge), SHAPE_CUT_CODE),
-    ThemeItem(stringResource(id = R.string.RoundedEdge), SHAPE_ROUNDED_CODE)
-  )
-
-
-
-  Column(
-    verticalArrangement = Arrangement.spacedBy(smallPadding),
-    modifier = Modifier.padding(mediumPadding)
-  ) {
-    Text(
-      text = stringResource(id = R.string.shapes),
-      fontWeight = FontWeight.Bold,
-      fontFamily = LocalFontThemes.current.fontFamily
+    val shapeThemes = listOf(
+        ThemeItem(stringResource(id = R.string.SquareEdge), SHAPE_SQUARE_CODE),
+        ThemeItem(stringResource(id = R.string.CutEdge), SHAPE_CUT_CODE),
+        ThemeItem(stringResource(id = R.string.RoundedEdge), SHAPE_ROUNDED_CODE)
     )
-    Row(
-      modifier = Modifier
-          .fillMaxWidth()
-          .selectableGroup()
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(smallPadding),
+        modifier = Modifier.padding(mediumPadding)
     ) {
-      shapeThemes.forEach { themeShape ->
-        Row(modifier = Modifier.clickable {
-          with(sharedPref.edit()) {
-            setCurrentShapeTheme(themeShape.id)
-            putInt(SHAPE_KEY, themeShape.id)
-            apply()
-          }
-        }) {
-          RadioButton(
-            selected = themeShape.id == currentShapeTheme.id,
-            null,
-            colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
-          )
-          Text(
-            text = themeShape.name,
-            style = MaterialTheme.typography.body1.merge(),
-            fontFamily = LocalFontThemes.current.fontFamily,
-            modifier = Modifier.padding(
-              start = paddingRadioButtonHorizontal,
-              end = paddingRadioButtonHorizontal
-            )
-          )
+        Text(
+            text = stringResource(id = R.string.shapes),
+            fontWeight = FontWeight.Bold,
+            fontFamily = LocalFontThemes.current.fontFamily
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectableGroup()
+        ) {
+            shapeThemes.forEach { themeShape ->
+                Row(
+                    modifier = Modifier.clickable {
+                        with(sharedPref.edit()) {
+                            setCurrentShapeTheme(themeShape.id)
+                            putInt(SHAPE_KEY, themeShape.id)
+                            apply()
+                        }
+                    }
+                ) {
+                    RadioButton(
+                        selected = themeShape.id == currentShapeTheme.id,
+                        null,
+                        colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
+                    )
+                    Text(
+                        text = themeShape.name,
+                        style = MaterialTheme.typography.body1.merge(),
+                        fontFamily = LocalFontThemes.current.fontFamily,
+                        modifier = Modifier.padding(
+                            start = paddingRadioButtonHorizontal,
+                            end = paddingRadioButtonHorizontal
+                        )
+                    )
+                }
+            }
         }
-      }
     }
-
-  }
 }
-
 
 @Composable
 fun FontSelectorSection(
-  sharedPref: SharedPreferences,
-  currentFontTheme: FontsTheme,
-  setCurrentFontTheme: (Int) -> Unit
+    sharedPref: SharedPreferences,
+    currentFontTheme: FontsTheme,
+    setCurrentFontTheme: (Int) -> Unit
 ) {
 
-  val fontThemes = listOf(
-    ThemeItem(stringResource(id = R.string.OpenSans), FONT_OPEN_SANS_CODE),
-    ThemeItem(stringResource(id = R.string.Roboto), FONT_ROBOTO_CODE),
-    ThemeItem(stringResource(id = R.string.Montserrat), FONT_MONTSERRAT_CODE),
-  )
-
-
-  Column(
-    verticalArrangement = Arrangement.spacedBy(smallPadding),
-    modifier = Modifier.padding(mediumPadding)
-  ) {
-    Text(
-      text = stringResource(id = R.string.FontTypes),
-      fontWeight = FontWeight.Bold,
-      fontFamily = LocalFontThemes.current.fontFamily
+    val fontThemes = listOf(
+        ThemeItem(stringResource(id = R.string.OpenSans), FONT_OPEN_SANS_CODE),
+        ThemeItem(stringResource(id = R.string.Roboto), FONT_ROBOTO_CODE),
+        ThemeItem(stringResource(id = R.string.Montserrat), FONT_MONTSERRAT_CODE),
     )
-    Row(
-      modifier = Modifier
-          .fillMaxWidth()
-          .selectableGroup()
-    ) {
-      fontThemes.forEach { themeFont ->
-        Row(modifier = Modifier.clickable {
-          with(sharedPref.edit()) {
-            setCurrentFontTheme(themeFont.id)
-            putInt(FONT_KEY, currentFontTheme.id)
-            apply()
-          }
-        }) {
-          RadioButton(
-            selected = themeFont.id == currentFontTheme.id,
-            null,
-            colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
-          )
-          Text(
-            text = themeFont.name,
-            style = MaterialTheme.typography.body1.merge(),
-            fontFamily = LocalFontThemes.current.fontFamily,
-            modifier = Modifier.padding(
-              start = paddingRadioButtonHorizontal,
-              end = paddingRadioButtonHorizontal
-            )
-          )
-        }
-      }
-    }
 
-  }
+    Column(
+        verticalArrangement = Arrangement.spacedBy(smallPadding),
+        modifier = Modifier.padding(mediumPadding)
+    ) {
+        Text(
+            text = stringResource(id = R.string.FontTypes),
+            fontWeight = FontWeight.Bold,
+            fontFamily = LocalFontThemes.current.fontFamily
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectableGroup()
+        ) {
+            fontThemes.forEach { themeFont ->
+                Row(
+                    modifier = Modifier.clickable {
+                        with(sharedPref.edit()) {
+                            setCurrentFontTheme(themeFont.id)
+                            putInt(FONT_KEY, currentFontTheme.id)
+                            apply()
+                        }
+                    }
+                ) {
+                    RadioButton(
+                        selected = themeFont.id == currentFontTheme.id,
+                        null,
+                        colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
+                    )
+                    Text(
+                        text = themeFont.name,
+                        style = MaterialTheme.typography.body1.merge(),
+                        fontFamily = LocalFontThemes.current.fontFamily,
+                        modifier = Modifier.padding(
+                            start = paddingRadioButtonHorizontal,
+                            end = paddingRadioButtonHorizontal
+                        )
+                    )
+                }
+            }
+        }
+    }
 }
