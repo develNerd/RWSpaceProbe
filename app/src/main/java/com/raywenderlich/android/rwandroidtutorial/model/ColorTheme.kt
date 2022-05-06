@@ -34,7 +34,7 @@
 
 package com.raywenderlich.android.rwandroidtutorial.model
 
-import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.raywenderlich.android.rwandroidtutorial.ui.screens.SPACE_BLUE_CODE
 import com.raywenderlich.android.rwandroidtutorial.ui.screens.SPACE_GRAY_CODE
@@ -42,8 +42,8 @@ import com.raywenderlich.android.rwandroidtutorial.ui.screens.SPACE_GREEN_CODE
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.*
 
 data class ColorTheme(
-    val id:Int = SPACE_GREEN_CODE,
-    val primaryColor: Color =spaceGreen700 ,
+    val id: Int = SPACE_GREEN_CODE,
+    val primaryColor: Color = spaceGreen700,
     val secondaryColor: Color = spaceGreen500,
     val itemBackground: Color = spaceGreen200
 )
@@ -69,4 +69,4 @@ val spaceBlueColors = ColorTheme(
     itemBackground = spaceBlue200
 )
 
-val LocalColorThemes = compositionLocalOf { ColorTheme() }
+val LocalColorThemes = staticCompositionLocalOf { ColorTheme() }
