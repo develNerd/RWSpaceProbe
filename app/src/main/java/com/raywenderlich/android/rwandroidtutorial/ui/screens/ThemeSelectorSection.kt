@@ -22,7 +22,6 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.paddingRadioButtonHorizontal
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 
-
 @Composable
 fun ThemeSelectorSection() {
 
@@ -30,17 +29,15 @@ fun ThemeSelectorSection() {
     val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier
+        verticalArrangement = Arrangement.spacedBy(smallPadding),
+        modifier = Modifier
             .fillMaxWidth()
             .shadow(elevation = elevation)
     ) {
         ColorSelectorSection(sharedPref = sharedPref)
         ShapeSelectorSection(sharedPref = sharedPref)
         FontSelectorSection(sharedPref = sharedPref)
-
     }
-
-
 }
 
 @Composable
@@ -56,14 +53,16 @@ fun ColorSelectorSection(sharedPref: SharedPreferences) {
 
     val themeId = sharedPref.getInt(colorKey, R.string.SpaceGreen)
 
-
     var currentColor by remember {
         mutableStateOf(themeId)
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(
-        dp10
-    )) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(smallPadding),
+        modifier = Modifier.padding(
+            dp10
+        )
+    ) {
         Text(text = stringResource(id = R.string.colors), fontWeight = FontWeight.Bold)
         Row(
             modifier = Modifier
@@ -71,13 +70,15 @@ fun ColorSelectorSection(sharedPref: SharedPreferences) {
                 .selectableGroup()
         ) {
             themeColors.forEach { themeColor ->
-                Row(modifier = Modifier.clickable {
-                    with(sharedPref.edit()) {
-                        currentColor = themeColor.id
-                        putInt(colorKey, currentColor)
-                        apply()
+                Row(
+                    modifier = Modifier.clickable {
+                        with(sharedPref.edit()) {
+                            currentColor = themeColor.id
+                            putInt(colorKey, currentColor)
+                            apply()
+                        }
                     }
-                }) {
+                ) {
                     RadioButton(
                         selected = themeColor.id == currentColor,
                         null
@@ -90,7 +91,6 @@ fun ColorSelectorSection(sharedPref: SharedPreferences) {
                 }
             }
         }
-
     }
 }
 
@@ -107,12 +107,11 @@ fun ShapeSelectorSection(sharedPref: SharedPreferences) {
 
     val themeId = sharedPref.getInt(shapeKey, R.string.SquareEdge)
 
-
     var currentShape by remember {
         mutableStateOf(themeId)
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding),modifier = Modifier.padding(dp10)) {
+    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(dp10)) {
         Text(text = stringResource(id = R.string.shapes), fontWeight = FontWeight.Bold)
         Row(
             modifier = Modifier
@@ -120,13 +119,15 @@ fun ShapeSelectorSection(sharedPref: SharedPreferences) {
                 .selectableGroup()
         ) {
             shapeThemes.forEach { themeShape ->
-                Row(modifier = Modifier.clickable {
-                    with(sharedPref.edit()) {
-                        currentShape = themeShape.id
-                        putInt(shapeKey, currentShape)
-                        apply()
+                Row(
+                    modifier = Modifier.clickable {
+                        with(sharedPref.edit()) {
+                            currentShape = themeShape.id
+                            putInt(shapeKey, currentShape)
+                            apply()
+                        }
                     }
-                }) {
+                ) {
                     RadioButton(
                         selected = themeShape.id == currentShape,
                         null
@@ -139,10 +140,8 @@ fun ShapeSelectorSection(sharedPref: SharedPreferences) {
                 }
             }
         }
-
     }
 }
-
 
 @Composable
 fun FontSelectorSection(sharedPref: SharedPreferences) {
@@ -157,12 +156,11 @@ fun FontSelectorSection(sharedPref: SharedPreferences) {
 
     val themeId = sharedPref.getInt(fontKey, R.string.OpenSans)
 
-
     var currentFont by remember {
         mutableStateOf(themeId)
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding),modifier = Modifier.padding(dp10)) {
+    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(dp10)) {
         Text(text = stringResource(id = R.string.FontTypes), fontWeight = FontWeight.Bold)
         Row(
             modifier = Modifier
@@ -170,13 +168,15 @@ fun FontSelectorSection(sharedPref: SharedPreferences) {
                 .selectableGroup()
         ) {
             shapeThemes.forEach { themeFont ->
-                Row(modifier = Modifier.clickable {
-                    with(sharedPref.edit()) {
-                        currentFont = themeFont.id
-                        putInt(fontKey, currentFont)
-                        apply()
+                Row(
+                    modifier = Modifier.clickable {
+                        with(sharedPref.edit()) {
+                            currentFont = themeFont.id
+                            putInt(fontKey, currentFont)
+                            apply()
+                        }
                     }
-                }) {
+                ) {
                     RadioButton(
                         selected = themeFont.id == currentFont,
                         null
@@ -189,6 +189,5 @@ fun FontSelectorSection(sharedPref: SharedPreferences) {
                 }
             }
         }
-
     }
 }
