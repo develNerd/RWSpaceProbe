@@ -34,11 +34,10 @@
 
 package com.raywenderlich.android.rwandroidtutorial.ui.screens
 
+import android.app.Activity
+import android.content.Context
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
@@ -47,8 +46,11 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.model.spaceProbeMissions
+import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.mediumPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.widgets.MainTopBar
@@ -59,6 +61,9 @@ fun MainScreen() {
     var isThemeSectionExpanded by remember {
         mutableStateOf(true)
     }
+
+    val context = LocalContext.current as Activity
+    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
 
     Scaffold(topBar = {
         MainTopBar(actions = {
@@ -78,8 +83,17 @@ fun MainScreen() {
         ) {
 
             if (isThemeSectionExpanded) {
-                ThemeSelectorSection()
-            }
+
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(smallPadding),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .shadow(elevation = elevation)
+                ) {
+                    ColorSelectorSection(sharedPref = sharedPref)
+                    ShapeSelectorSection(sharedPref = sharedPref)
+                    FontSelectorSection(sharedPref = sharedPref)
+                }            }
 
             Column(
                 modifier = Modifier
