@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SpaceProbeTheme {
                 // A surface container using the 'background' color from the theme
-                MainScreen( this)
+                MainScreen(this)
             }
         }
     }
