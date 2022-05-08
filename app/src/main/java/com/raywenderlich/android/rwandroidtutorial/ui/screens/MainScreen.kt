@@ -85,6 +85,28 @@ fun MainScreen(context: Context) {
 
     // TODO 2
 
+    val colorTheme = sharedPref.getInt(COLOR_KEY, SPACE_GREEN_CODE)
+    val shapeTheme = sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE)
+    val fontTheme = sharedPref.getInt(FONT_KEY, FONT_OPEN_SANS_CODE)
+
+    var currentColorThemeCode by remember {
+        mutableStateOf(colorTheme)
+    }
+
+    var currentShapeThemeCode by remember {
+        mutableStateOf(shapeTheme)
+    }
+
+    var currentFontThemeCode by remember {
+        mutableStateOf(fontTheme)
+    }
+
+    val shapeThemes = getCurrentShape(currentShapeThemeCode)
+
+    val colorThemes = getCurrentColor(currentColorThemeCode)
+
+    val fontThemes = getCurrentFont(currentFontThemeCode)
+
     Scaffold(topBar = {
         MainTopBar(actions = {
             IconButton(onClick = { isThemeSectionExpanded = !isThemeSectionExpanded }) {
