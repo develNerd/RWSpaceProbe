@@ -47,7 +47,6 @@ import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.model.spaceProbeMissions
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
@@ -56,7 +55,7 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.widgets.MainTopBar
 
 @Composable
-fun MainScreen(context:Context) {
+fun MainScreen(context: Context) {
 
     var isThemeSectionExpanded by remember {
         mutableStateOf(true)
@@ -64,6 +63,8 @@ fun MainScreen(context:Context) {
 
     // TODO 1
     val sharedPref = (context as Activity).getPreferences(Context.MODE_PRIVATE) ?: return
+
+    // TODO 2
 
     Scaffold(topBar = {
         MainTopBar(actions = {
@@ -93,7 +94,8 @@ fun MainScreen(context:Context) {
                     ColorSelectorSection(sharedPref = sharedPref)
                     ShapeSelectorSection(sharedPref = sharedPref)
                     FontSelectorSection(sharedPref = sharedPref)
-                }            }
+                }
+            }
 
             Column(
                 modifier = Modifier
