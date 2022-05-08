@@ -38,6 +38,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.raywenderlich.android.rwandroidtutorial.ui.screens.MainScreen
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.SpaceProbeTheme
@@ -51,16 +52,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             SpaceProbeTheme {
                 // A surface container using the 'background' color from the theme
-                MainScreen()
+                MainScreen(this)
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SpaceProbeTheme {
-        MainScreen()
-    }
-}

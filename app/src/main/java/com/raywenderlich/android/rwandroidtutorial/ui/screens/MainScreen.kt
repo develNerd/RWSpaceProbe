@@ -56,14 +56,14 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.widgets.MainTopBar
 
 @Composable
-fun MainScreen() {
+fun MainScreen(context:Context) {
 
     var isThemeSectionExpanded by remember {
         mutableStateOf(true)
     }
 
-    val context = LocalContext.current as Activity
-    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
+    // TODO 1
+    val sharedPref = (context as Activity).getPreferences(Context.MODE_PRIVATE) ?: return
 
     Scaffold(topBar = {
         MainTopBar(actions = {

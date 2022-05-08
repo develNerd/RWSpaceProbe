@@ -1,7 +1,5 @@
 package com.raywenderlich.android.rwandroidtutorial.ui.screens
 
-import android.app.Activity
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,34 +9,14 @@ import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.R
 import com.raywenderlich.android.rwandroidtutorial.model.ThemeItem
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.dp10
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.paddingRadioButtonHorizontal
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 
-@Composable
-fun ThemeSelectorSection() {
-
-    val context = LocalContext.current as Activity
-    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
-
-    Column(
-        verticalArrangement = Arrangement.spacedBy(smallPadding),
-        modifier = Modifier
-            .fillMaxWidth()
-            .shadow(elevation = elevation)
-    ) {
-        ColorSelectorSection(sharedPref = sharedPref)
-        ShapeSelectorSection(sharedPref = sharedPref)
-        FontSelectorSection(sharedPref = sharedPref)
-    }
-}
 
 @Composable
 fun ColorSelectorSection(sharedPref: SharedPreferences) {
