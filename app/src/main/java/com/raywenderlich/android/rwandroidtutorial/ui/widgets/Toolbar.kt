@@ -46,12 +46,14 @@ import com.raywenderlich.android.rwandroidtutorial.ui.theme.spaceGreen500
 
 @Composable
 fun MainTopBar(
+    orientation: String = "",
     backgroundColor: Color = spaceGreen500,
     actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
         elevation = 4.dp,
         title = {
+            // TODO 2
             Text(text = stringResource(id = R.string.app_name))
         },
         actions = actions, backgroundColor = backgroundColor, contentColor = Color.White
