@@ -48,11 +48,30 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
+import com.raywenderlich.android.rwandroidtutorial.R
 import com.raywenderlich.android.rwandroidtutorial.model.spaceProbeMissions
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.mediumPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.widgets.MainTopBar
+import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentColor
+import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentFont
+import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentShape
+
+const val SPACE_GREEN_CODE = R.string.SpaceGreen
+const val SPACE_GRAY_CODE = R.string.SpaceGray
+const val SPACE_BLUE_CODE = R.string.SpaceBlue
+const val COLOR_KEY = "Colors"
+
+const val SHAPE_SQUARE_CODE = R.string.SquareEdge
+const val SHAPE_ROUNDED_CODE = R.string.RoundedEdge
+const val SHAPE_CUT_CODE = R.string.CutEdge
+const val SHAPE_KEY = "Shapes"
+
+const val FONT_OPEN_SANS_CODE = R.string.OpenSans
+const val FONT_ROBOTO_CODE = R.string.Roboto
+const val FONT_MONTSERRAT_CODE = R.string.Montserrat
+const val FONT_KEY = "Fonts"
 
 @Composable
 fun MainScreen(context: Context) {

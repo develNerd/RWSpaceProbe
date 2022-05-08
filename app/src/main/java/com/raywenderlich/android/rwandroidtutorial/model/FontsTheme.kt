@@ -32,24 +32,34 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.ui.theme
+package com.raywenderlich.android.rwandroidtutorial.model
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.text.font.FontFamily
+import com.raywenderlich.android.rwandroidtutorial.ui.screens.*
+import com.raywenderlich.android.rwandroidtutorial.ui.theme.*
 
-// Green Colors
-val spaceGreen200 = Color(0xFF6abf69)
-val spaceGreen500 = Color(0xFF064D2B)
-val spaceGreen700 = Color(0xFF006837)
-val TealGreen200 = Color(0xFFAFDBAF)
+data class FontsTheme(
+    val id:Int = FONT_OPEN_SANS_CODE,
+    val fontFamily: FontFamily = openSansFamily
+)
 
-// Gray Colors
+val fontOpenSans = FontsTheme(
+    id = FONT_OPEN_SANS_CODE,
+    fontFamily = openSansFamily
+)
 
-val spaceGray200 = Color(0xFFa4a4a4)
-val spaceGray500 = Color(0xFF757575)
-val spaceGray700 = Color(0xFF494949)
+val fontRoboto = FontsTheme(
+    id = FONT_ROBOTO_CODE,
+    fontFamily = robotoFamily
+)
 
-// Blue Colors
+val fontMontserrat = FontsTheme(
+    id = FONT_MONTSERRAT_CODE,
+    fontFamily = montserratFamily
+)
 
-val spaceBlue200 = Color(0xFF90caf9)
-val spaceBlue500 = Color(0xFF5d99c6)
-val spaceBlue700 = Color(0xFF3f51b5)
+
+
+
+val LocalFontThemes = compositionLocalOf { FontsTheme() }
