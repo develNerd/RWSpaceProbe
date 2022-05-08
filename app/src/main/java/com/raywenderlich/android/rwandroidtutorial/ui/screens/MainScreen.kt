@@ -89,8 +89,8 @@ fun MainScreen() {
         mutableStateOf(true)
     }
 
-    val context = LocalContext.current as Activity
-    val sharedPref = context.getPreferences(Context.MODE_PRIVATE) ?: return
+    val context = LocalContext.current
+    val sharedPref = (context as Activity).getPreferences(Context.MODE_PRIVATE) ?: return
 
     val colorTheme = sharedPref.getInt(COLOR_KEY, SPACE_GREEN_CODE)
     val shapeTheme = sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE)
