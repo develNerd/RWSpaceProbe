@@ -40,19 +40,16 @@ import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.R
 
 val openSansFamily = FontFamily(
-  Font(R.font.opensans_regular),
-  Font(R.font.opensans_bold, weight = FontWeight.Bold)
+    Font(R.font.opensans_regular),
+    Font(R.font.opensans_bold, weight = FontWeight.Bold)
 )
 
 val robotoFamily = FontFamily(
-  Font(R.font.roboto_regular),
-  Font(R.font.roboto_bold, weight = FontWeight.Bold)
+    Font(R.font.roboto_regular),
+    Font(R.font.roboto_bold, weight = FontWeight.Bold)
 )
 
 val montserratFamily = FontFamily(
-  Font(R.font.montserrat_regular),
-  Font(R.font.montserrat_bold, weight = FontWeight.Bold)
+    Font(R.font.montserrat_regular),
+    Font(R.font.montserrat_bold, weight = FontWeight.Bold)
 )
-
-
-
