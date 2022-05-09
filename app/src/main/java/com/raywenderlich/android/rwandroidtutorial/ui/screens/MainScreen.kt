@@ -171,7 +171,7 @@ fun ProbeMissionItem(probeName: String, missionDescription: String) {
                 mediumPadding
             )
         ) {
-            Text(text = probeName, fontWeight = FontWeight.Bold)
+            Text(text = probeName)
             Text(text = missionDescription)
         }
     }
