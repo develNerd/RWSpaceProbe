@@ -116,8 +116,8 @@ fun MainScreen() {
 
     CompositionLocalProvider(
         LocalColorThemes provides colorThemes,
+        LocalFontThemes provides fontThemes,
         LocalShapeThemes provides shapeThemes,
-        LocalFontThemes provides fontThemes
     ) {
 
         Scaffold(topBar = {
