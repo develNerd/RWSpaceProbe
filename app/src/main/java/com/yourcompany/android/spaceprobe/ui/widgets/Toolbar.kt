@@ -32,22 +32,30 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.model
+package com.yourcompany.android.spaceprobe.ui.widgets
 
-import androidx.compose.foundation.shape.AbsoluteCutCornerShape
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_CUT_CODE
-import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_ROUNDED_CODE
-import com.raywenderlich.android.rwandroidtutorial.ui.screens.SHAPE_SQUARE_CODE
+import com.raywenderlich.android.spaceprobe.R
+import com.yourcompany.android.spaceprobe.ui.theme.spaceGreen500
 
-data class ShapeTheme(val id: Int = SHAPE_SQUARE_CODE, val shape: Shape = AbsoluteCutCornerShape(0.dp))
-
-val shapeRoundedEdge = ShapeTheme(id = SHAPE_ROUNDED_CODE, shape = RoundedCornerShape(10.dp))
-val shapeCutEdge = ShapeTheme(id = SHAPE_CUT_CODE, shape = CutCornerShape(10.dp))
-val shapeSquareEdge = ShapeTheme(id = SHAPE_SQUARE_CODE, shape = AbsoluteCutCornerShape(0.dp))
-
-val LocalShapeThemes = compositionLocalOf { ShapeTheme() }
+@Composable
+fun MainTopBar(
+    orientation: String = "",
+    backgroundColor: Color = spaceGreen500,
+    actions: @Composable RowScope.() -> Unit = {}
+) {
+    TopAppBar(
+        elevation = 4.dp,
+        title = {
+            // TODO 2
+            Text(text = stringResource(id = R.string.app_name))
+        },
+        actions = actions, backgroundColor = backgroundColor, contentColor = Color.White
+    )
+}

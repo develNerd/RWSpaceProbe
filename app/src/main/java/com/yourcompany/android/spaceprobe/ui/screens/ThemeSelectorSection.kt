@@ -1,4 +1,4 @@
-package com.raywenderlich.android.rwandroidtutorial.ui.screens
+package com.yourcompany.android.spaceprobe.ui.screens
 
 import android.content.SharedPreferences
 import androidx.compose.foundation.clickable
@@ -11,11 +11,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.raywenderlich.android.rwandroidtutorial.R
-import com.raywenderlich.android.rwandroidtutorial.model.ThemeItem
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.dp10
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.paddingRadioButtonHorizontal
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
+import com.raywenderlich.android.spaceprobe.R
+import com.yourcompany.android.spaceprobe.model.ThemeItem
+import com.yourcompany.android.spaceprobe.ui.theme.dp10
+import com.yourcompany.android.spaceprobe.ui.theme.paddingRadioButtonHorizontal
+import com.yourcompany.android.spaceprobe.ui.theme.smallPadding
 
 
 @Composable
@@ -89,7 +89,9 @@ fun ShapeSelectorSection(sharedPref: SharedPreferences) {
         mutableStateOf(themeId)
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(dp10)) {
+    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(
+        dp10
+    )) {
         Text(text = stringResource(id = R.string.shapes), fontWeight = FontWeight.Bold)
         Row(
             modifier = Modifier
@@ -138,7 +140,9 @@ fun FontSelectorSection(sharedPref: SharedPreferences) {
         mutableStateOf(themeId)
     }
 
-    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(dp10)) {
+    Column(verticalArrangement = Arrangement.spacedBy(smallPadding), modifier = Modifier.padding(
+        dp10
+    )) {
         Text(text = stringResource(id = R.string.FontTypes), fontWeight = FontWeight.Bold)
         Row(
             modifier = Modifier

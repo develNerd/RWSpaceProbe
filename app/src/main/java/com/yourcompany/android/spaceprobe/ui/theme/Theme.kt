@@ -32,29 +32,49 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial
+package com.yourcompany.android.spaceprobe.ui.theme
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import com.raywenderlich.android.rwandroidtutorial.ui.screens.MainScreen
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.SpaceProbeTheme
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+private val DarkColorPalette = darkColors(
+    primary = spaceGreen200,
+    primaryVariant = spaceGreen700,
+    secondary = spaceGreen500,
+    onSurface = spaceGreen500
+)
 
-        setTheme(R.style.AppTheme)
+private val LightColorPalette = lightColors(
+    primary = spaceGreen500,
+    primaryVariant = spaceGreen700,
+    secondary = spaceGreen200,
+    onSurface = TealGreen200
 
-        setContent {
-            SpaceProbeTheme {
-                // A surface container using the 'background' color from the theme
-                MainScreen(this)
-            }
-        }
+  /* Other default colors to override
+    background = Color.White,
+    surface = Color.White,
+    onPrimary = Color.White,
+    onSecondary = Color.Black,
+    onBackground = Color.Black,
+    onSurface = Color.Black,
+    */
+)
+
+@Composable
+fun SpaceProbeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val colors = if (darkTheme) {
+        DarkColorPalette
+    } else {
+        LightColorPalette
     }
-}
 
+    MaterialTheme(
+        colors = colors,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
+    )
+}

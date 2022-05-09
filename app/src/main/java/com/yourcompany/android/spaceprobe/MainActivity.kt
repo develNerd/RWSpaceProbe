@@ -32,8 +32,27 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.model
+package com.yourcompany.android.spaceprobe
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import com.raywenderlich.android.rwandroidtutorial.R
+import com.yourcompany.android.spaceprobe.ui.screens.MainScreen
+import com.yourcompany.android.spaceprobe.ui.theme.SpaceProbeTheme
 
-data class ThemeItem(val name:String, val id:Int)
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setTheme(R.style.AppTheme)
+
+        setContent {
+            SpaceProbeTheme {
+                // A surface container using the 'background' color from the theme
+                MainScreen(this)
+            }
+        }
+    }
+}
 

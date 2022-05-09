@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.model
+package com.yourcompany.android.spaceprobe.model
 
 
 val spaceProbeMissions = listOf(

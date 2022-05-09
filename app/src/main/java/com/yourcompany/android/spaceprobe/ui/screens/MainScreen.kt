@@ -32,7 +32,7 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.ui.screens
+package com.yourcompany.android.spaceprobe.ui.screens
 
 import android.app.Activity
 import android.content.Context
@@ -47,16 +47,15 @@ import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.R
-import com.raywenderlich.android.rwandroidtutorial.model.spaceProbeMissions
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.mediumPadding
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
-import com.raywenderlich.android.rwandroidtutorial.ui.widgets.MainTopBar
-import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentColor
-import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentFont
-import com.raywenderlich.android.rwandroidtutorial.utils.getCurrentShape
+import com.yourcompany.android.spaceprobe.model.spaceProbeMissions
+import com.yourcompany.android.spaceprobe.ui.theme.elevation
+import com.yourcompany.android.spaceprobe.ui.theme.mediumPadding
+import com.yourcompany.android.spaceprobe.ui.theme.smallPadding
+import com.yourcompany.android.spaceprobe.ui.widgets.MainTopBar
+import com.yourcompany.android.spaceprobe.utils.getCurrentColor
+import com.yourcompany.android.spaceprobe.utils.getCurrentFont
+import com.yourcompany.android.spaceprobe.utils.getCurrentShape
 
 const val SPACE_GREEN_CODE = R.string.SpaceGreen
 const val SPACE_GRAY_CODE = R.string.SpaceGray

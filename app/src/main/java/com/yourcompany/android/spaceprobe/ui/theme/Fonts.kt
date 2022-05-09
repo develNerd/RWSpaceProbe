@@ -32,34 +32,24 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.model
+package com.yourcompany.android.spaceprobe.ui.theme
 
-import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import com.raywenderlich.android.rwandroidtutorial.ui.screens.*
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.*
+import androidx.compose.ui.text.font.FontWeight
+import com.raywenderlich.android.spaceprobe.R
 
-data class FontsTheme(
-    val id:Int = FONT_OPEN_SANS_CODE,
-    val fontFamily: FontFamily = openSansFamily
+val openSansFamily = FontFamily(
+    Font(R.font.opensans_regular),
+    Font(R.font.opensans_bold, weight = FontWeight.Bold)
 )
 
-val fontOpenSans = FontsTheme(
-    id = FONT_OPEN_SANS_CODE,
-    fontFamily = openSansFamily
+val robotoFamily = FontFamily(
+    Font(R.font.roboto_regular),
+    Font(R.font.roboto_bold, weight = FontWeight.Bold)
 )
 
-val fontRoboto = FontsTheme(
-    id = FONT_ROBOTO_CODE,
-    fontFamily = robotoFamily
+val montserratFamily = FontFamily(
+    Font(R.font.montserrat_regular),
+    Font(R.font.montserrat_bold, weight = FontWeight.Bold)
 )
-
-val fontMontserrat = FontsTheme(
-    id = FONT_MONTSERRAT_CODE,
-    fontFamily = montserratFamily
-)
-
-
-
-// TODO 6
-val LocalFontThemes = compositionLocalOf { FontsTheme() }

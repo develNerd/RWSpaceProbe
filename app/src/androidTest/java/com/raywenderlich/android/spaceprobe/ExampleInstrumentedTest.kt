@@ -1,4 +1,4 @@
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.spaceprobe
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

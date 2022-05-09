@@ -32,24 +32,14 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial.ui.theme
+package com.yourcompany.android.spaceprobe.ui.theme
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Shapes
+import androidx.compose.ui.unit.dp
 
-// Green Colors
-val spaceGreen200 = Color(0xFF6abf69)
-val spaceGreen500 = Color(0xFF064D2B)
-val spaceGreen700 = Color(0xFF006837)
-val TealGreen200 = Color(0xFFAFDBAF)
-
-// Gray Colors
-
-val spaceGray200 = Color(0xFFa4a4a4)
-val spaceGray500 = Color(0xFF757575)
-val spaceGray700 = Color(0xFF494949)
-
-// Blue Colors
-
-val spaceBlue200 = Color(0xFF90caf9)
-val spaceBlue500 = Color(0xFF5d99c6)
-val spaceBlue700 = Color(0xFF3f51b5)
+val Shapes = Shapes(
+    small = RoundedCornerShape(4.dp),
+    medium = RoundedCornerShape(4.dp),
+    large = RoundedCornerShape(0.dp)
+)

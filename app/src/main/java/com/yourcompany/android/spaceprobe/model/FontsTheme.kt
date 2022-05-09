@@ -32,15 +32,37 @@
  * THE SOFTWARE.
  */
 
+package com.yourcompany.android.spaceprobe.model
 
-package com.raywenderlich.android.rwandroidtutorial.ui.theme
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.ui.text.font.FontFamily
+import com.yourcompany.android.spaceprobe.ui.screens.FONT_MONTSERRAT_CODE
+import com.yourcompany.android.spaceprobe.ui.screens.FONT_OPEN_SANS_CODE
+import com.yourcompany.android.spaceprobe.ui.screens.FONT_ROBOTO_CODE
+import com.yourcompany.android.spaceprobe.ui.theme.montserratFamily
+import com.yourcompany.android.spaceprobe.ui.theme.openSansFamily
+import com.yourcompany.android.spaceprobe.ui.theme.robotoFamily
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
-
-val Shapes = Shapes(
-  small = RoundedCornerShape(4.dp),
-  medium = RoundedCornerShape(4.dp),
-  large = RoundedCornerShape(0.dp)
+data class FontsTheme(
+    val id:Int = FONT_OPEN_SANS_CODE,
+    val fontFamily: FontFamily = openSansFamily
 )
+
+val fontOpenSans = FontsTheme(
+    id = FONT_OPEN_SANS_CODE,
+    fontFamily = openSansFamily
+)
+
+val fontRoboto = FontsTheme(
+    id = FONT_ROBOTO_CODE,
+    fontFamily = robotoFamily
+)
+
+val fontMontserrat = FontsTheme(
+    id = FONT_MONTSERRAT_CODE,
+    fontFamily = montserratFamily
+)
+
+
+
+// TODO 6

@@ -1,7 +1,7 @@
-package com.raywenderlich.android.rwandroidtutorial.utils
+package com.yourcompany.android.spaceprobe.utils
 
-import com.raywenderlich.android.rwandroidtutorial.model.*
-import com.raywenderlich.android.rwandroidtutorial.ui.screens.*
+import com.yourcompany.android.spaceprobe.model.*
+import com.yourcompany.android.spaceprobe.ui.screens.*
 
 fun getCurrentColor(colorId:Int): ColorTheme = when(colorId){
     SPACE_GREEN_CODE -> spaceGreenColors
@@ -10,7 +10,7 @@ fun getCurrentColor(colorId:Int): ColorTheme = when(colorId){
     else -> spaceGreenColors
 }
 
-fun getCurrentShape(shapeId:Int):ShapeTheme =  when(shapeId){
+fun getCurrentShape(shapeId:Int): ShapeTheme =  when(shapeId){
     SHAPE_SQUARE_CODE -> shapeSquareEdge
     SHAPE_ROUNDED_CODE -> shapeRoundedEdge
     SHAPE_CUT_CODE -> shapeCutEdge
@@ -18,7 +18,7 @@ fun getCurrentShape(shapeId:Int):ShapeTheme =  when(shapeId){
 }
 
 
-fun getCurrentFont(fontId:Int):FontsTheme = when(fontId){
+fun getCurrentFont(fontId:Int): FontsTheme = when(fontId){
     FONT_MONTSERRAT_CODE -> fontMontserrat
     FONT_ROBOTO_CODE -> fontRoboto
     FONT_OPEN_SANS_CODE -> fontOpenSans
