@@ -115,7 +115,6 @@ fun ColorSelectorSection(
 @Composable
 fun ShapeSelectorSection(
     sharedPref: SharedPreferences,
-    currentShapeTheme: ShapeTheme,
     setCurrentShapeTheme: (Int) -> Unit
 ) {
 
@@ -150,7 +149,7 @@ fun ShapeSelectorSection(
                     }
                 ) {
                     RadioButton(
-                        selected = themeShape.id == currentShapeTheme.id,
+                        selected = themeShape.id == sharedPref.getInt(SHAPE_KEY, SHAPE_SQUARE_CODE),
                         null,
                         colors = RadioButtonDefaults.colors(selectedColor = LocalColorThemes.current.secondaryColor)
                     )

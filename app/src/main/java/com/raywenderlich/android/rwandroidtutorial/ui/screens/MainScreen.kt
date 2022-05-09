@@ -48,14 +48,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import com.raywenderlich.android.rwandroidtutorial.R
 import com.raywenderlich.android.rwandroidtutorial.model.LocalColorThemes
 import com.raywenderlich.android.rwandroidtutorial.model.LocalFontThemes
 import com.raywenderlich.android.rwandroidtutorial.model.LocalShapeThemes
 import com.raywenderlich.android.rwandroidtutorial.model.spaceProbeMissions
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.elevation
-import com.raywenderlich.android.rwandroidtutorial.ui.theme.largePadding
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.mediumPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.theme.smallPadding
 import com.raywenderlich.android.rwandroidtutorial.ui.widgets.MainTopBar
@@ -113,8 +111,7 @@ fun MainScreen() {
 
     CompositionLocalProvider(
         LocalColorThemes provides colorThemes,
-        LocalFontThemes provides fontThemes,
-        LocalShapeThemes provides shapeThemes,
+        LocalFontThemes provides fontThemes
     ) {
 
         Scaffold(topBar = {
@@ -140,15 +137,16 @@ fun MainScreen() {
                             .fillMaxWidth()
                             .shadow(elevation = elevation)
                     ) {
-                        // TODO 4
                         ColorSelectorSection(sharedPref = sharedPref, currentColorTheme = LocalColorThemes.current) {
                             currentColorThemeCode = it
                         }
-                        ShapeSelectorSection(sharedPref = sharedPref, LocalShapeThemes.current) {
-                            currentShapeThemeCode = it
-                        }
+
                         FontSelectorSection(sharedPref = sharedPref, LocalFontThemes.current) {
                             currentFontThemeCode = it
+                        }
+
+                        ShapeSelectorSection(sharedPref = sharedPref) {
+                            currentShapeThemeCode = it
                         }
                     }
                 }
@@ -161,11 +159,13 @@ fun MainScreen() {
                         smallPadding
                     )
                 ) {
-                    spaceProbeMissions.forEach { probeMission ->
-                        ProbeMissionItem(
-                            probeName = probeMission.probeName,
-                            missionDescription = probeMission.missionDescription
-                        )
+                    CompositionLocalProvider(LocalShapeThemes provides shapeThemes) {
+                        spaceProbeMissions.forEach { probeMission ->
+                            ProbeMissionItem(
+                                probeName = probeMission.probeName,
+                                missionDescription = probeMission.missionDescription
+                            )
+                        }
                     }
                 }
             }
@@ -187,14 +187,12 @@ fun ProbeMissionItem(probeName: String, missionDescription: String) {
                 mediumPadding
             )
         ) {
-            // TODO 3
             CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.body1) {
                 Text(text = probeName)
                 CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.body2) {
                     Text(text = missionDescription)
                 }
             }
-            // TODO 3 Ends here
         }
     }
 }
