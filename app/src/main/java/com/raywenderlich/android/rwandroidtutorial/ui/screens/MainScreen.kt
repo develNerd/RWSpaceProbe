@@ -132,8 +132,13 @@ fun MainScreen(context: Context) {
                         .fillMaxWidth()
                         .shadow(elevation = elevation)
                 ) {
+                    // TODO 4
                     ColorSelectorSection(sharedPref = sharedPref)
+
+                    // TODO 5
                     ShapeSelectorSection(sharedPref = sharedPref)
+
+                    // TODO 6
                     FontSelectorSection(sharedPref = sharedPref)
                 }
             }
