@@ -138,7 +138,7 @@ fun MainScreen(context: Context) {
                     // TODO 5
                     ShapeSelectorSection(sharedPref = sharedPref)
 
-                    // TODO 6
+                    // TODO 7
                     FontSelectorSection(sharedPref = sharedPref)
                 }
             }
