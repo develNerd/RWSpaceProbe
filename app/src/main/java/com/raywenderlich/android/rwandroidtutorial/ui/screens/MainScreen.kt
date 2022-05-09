@@ -40,10 +40,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
@@ -187,15 +184,17 @@ fun ProbeMissionItem(probeName: String, missionDescription: String) {
         Column(
             verticalArrangement = Arrangement.spacedBy(mediumPadding),
             modifier = Modifier.padding(
-                largePadding
+                mediumPadding
             )
         ) {
-            Text(
-                text = probeName,
-                fontWeight = FontWeight.Bold,
-                fontFamily = LocalFontThemes.current.fontFamily
-            )
-            Text(text = missionDescription, fontFamily = LocalFontThemes.current.fontFamily)
+            // TODO 3
+            CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.body1) {
+                Text(text = probeName)
+                CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.body2) {
+                    Text(text = missionDescription)
+                }
+            }
+            // TODO 3 Ends here
         }
     }
 }
