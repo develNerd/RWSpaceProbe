@@ -136,10 +136,10 @@ fun MainScreen(context: Context) {
                     ColorSelectorSection(sharedPref = sharedPref)
 
                     // TODO 5
-                    ShapeSelectorSection(sharedPref = sharedPref)
+                    FontSelectorSection(sharedPref = sharedPref)
 
                     // TODO 7
-                    FontSelectorSection(sharedPref = sharedPref)
+                    ShapeSelectorSection(sharedPref = sharedPref)
                 }
             }
 
