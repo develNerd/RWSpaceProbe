@@ -143,6 +143,7 @@ fun MainScreen() {
                             .fillMaxWidth()
                             .shadow(elevation = elevation)
                     ) {
+                        // TODO 4
                         ColorSelectorSection(
                             sharedPref = sharedPref,
                             currentColorTheme = LocalColorThemes.current
