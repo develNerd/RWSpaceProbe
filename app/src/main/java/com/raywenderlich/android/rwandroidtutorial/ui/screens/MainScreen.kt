@@ -144,10 +144,7 @@ fun MainScreen() {
                             .shadow(elevation = elevation)
                     ) {
                         // TODO 4
-                        ColorSelectorSection(
-                            sharedPref = sharedPref,
-                            currentColorTheme = LocalColorThemes.current
-                        ) {
+                        ColorSelectorSection(sharedPref = sharedPref, currentColorTheme = LocalColorThemes.current) {
                             currentColorThemeCode = it
                         }
                         ShapeSelectorSection(sharedPref = sharedPref, LocalShapeThemes.current) {
