@@ -34,5 +34,36 @@
 
 package com.yourcompany.android.spaceprobe.model
 
-data class ColorTheme()
+import androidx.compose.ui.graphics.Color
+import com.yourcompany.android.spaceprobe.ui.screens.SPACE_BLUE_CODE
+import com.yourcompany.android.spaceprobe.ui.screens.SPACE_GRAY_CODE
+import com.yourcompany.android.spaceprobe.ui.screens.SPACE_GREEN_CODE
+import com.yourcompany.android.spaceprobe.ui.theme.*
 
+data class ColorTheme(
+    val id: Int = SPACE_GREEN_CODE,
+    val primaryColor: Color = spaceGreen700,
+    val secondaryColor: Color = spaceGreen500,
+    val itemBackground: Color = spaceGreen200
+)
+
+val spaceGreenColors = ColorTheme(
+    id = SPACE_GREEN_CODE,
+    primaryColor = spaceGreen700,
+    secondaryColor = spaceGreen200,
+    itemBackground = TealGreen200
+)
+
+val spaceGrayColors = ColorTheme(
+    id = SPACE_GRAY_CODE,
+    primaryColor = spaceGray700,
+    secondaryColor = spaceGray500,
+    itemBackground = spaceGray200
+)
+
+val spaceBlueColors = ColorTheme(
+    id = SPACE_BLUE_CODE,
+    primaryColor = spaceBlue700,
+    secondaryColor = spaceBlue500,
+    itemBackground = spaceBlue200
+)

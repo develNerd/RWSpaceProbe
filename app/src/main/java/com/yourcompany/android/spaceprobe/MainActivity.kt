@@ -37,7 +37,7 @@ package com.yourcompany.android.spaceprobe
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.raywenderlich.android.rwandroidtutorial.R
+import com.yourcompany.android.spaceprobe.R
 import com.yourcompany.android.spaceprobe.ui.screens.MainScreen
 import com.yourcompany.android.spaceprobe.ui.theme.SpaceProbeTheme
 

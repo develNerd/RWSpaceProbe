@@ -47,7 +47,7 @@ import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import com.raywenderlich.android.rwandroidtutorial.R
+import com.yourcompany.android.spaceprobe.R
 import com.yourcompany.android.spaceprobe.model.spaceProbeMissions
 import com.yourcompany.android.spaceprobe.ui.theme.elevation
 import com.yourcompany.android.spaceprobe.ui.theme.mediumPadding

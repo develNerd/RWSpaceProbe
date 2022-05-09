@@ -37,7 +37,7 @@ package com.yourcompany.android.spaceprobe.ui.theme
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import com.raywenderlich.android.spaceprobe.R
+import com.yourcompany.android.spaceprobe.R
 
 val openSansFamily = FontFamily(
     Font(R.font.opensans_regular),

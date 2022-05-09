@@ -1,4 +1,4 @@
-package com.raywenderlich.android.spaceprobe
+package com.yourcompany.android.spaceprobe
 
 import org.junit.Test
 

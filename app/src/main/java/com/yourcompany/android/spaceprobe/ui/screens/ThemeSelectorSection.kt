@@ -11,7 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.raywenderlich.android.spaceprobe.R
+import com.yourcompany.android.spaceprobe.R
 import com.yourcompany.android.spaceprobe.model.ThemeItem
 import com.yourcompany.android.spaceprobe.ui.theme.dp10
 import com.yourcompany.android.spaceprobe.ui.theme.paddingRadioButtonHorizontal

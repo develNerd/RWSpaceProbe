@@ -1,4 +1,4 @@
-package com.raywenderlich.android.spaceprobe
+package com.yourcompany.android.spaceprobe
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
